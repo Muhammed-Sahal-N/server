@@ -69,7 +69,22 @@ app.use((error,req,res,next)=>{
 //   });
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  connectDB();
-  console.log(`Server is running on port ${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(PORT, () => {
+      console.log(`✅ Server is running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("❌ Failed to start server:", err);
+    process.exit(1); // Crash to show error on Render
+  }
+};
+
+startServer();
+
+
+// app.listen(PORT, () => {
+//   connectDB();
+//   console.log(`Server is running on port ${PORT}`);
+// });

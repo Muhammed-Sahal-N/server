@@ -50,6 +50,11 @@ app.use("/users",userRouter)
 app.use("/posts",postRouter)
 app.use("/comments",commentRouter)
 
+app.get("/", (req, res) => {
+  res.send(" Backend API is running!");
+});
+
+
 
 
 app.use((error,req,res,next)=>{
